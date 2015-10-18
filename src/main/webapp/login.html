@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html ng-app>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>快速开发平台-Web</title>
+    <link rel="stylesheet" href="components/bootstrap-3.3.5/css/bootstrap.min.css">
+    <script src="components/jquery-2.1.4/jquery-2.1.4.min.js"></script>
+    <script src="components/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+    <script src="components/angular-1.4.7/angular.min.js"></script>
+    <style type="text/css">
+      body {
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+
+      .logo {
+        font-size: 19pt;
+        text-align: center;
+      }
+
+      .footer {
+        font-size: 7pt;
+        text-align: center;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin-bottom: 20px;
+        margin-right: 20px;
+        font-style: italic;
+      }
+    </style>
+  </head>
+  <body>
+    <br>
+    <div class="logo">
+      <span>快速开发平台-Web</span>
+    </div>
+    <form class="form" action="index.html" method="post">
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-user"></span>
+        </span>
+        <input type="text" name="username" ng-model="username" class="form-control" id="username" placeholder="请输入用户名" />
+      </div>
+      <br>
+      <div class="input-group">
+        <span class="input-group-addon">
+          <span class="glyphicon glyphicon-lock"></span>
+        </span>
+        <input type="text" name="password" ng-model="password" class="form-control" id="password" placeholder="请输入密码" />
+      </div>
+      <br>
+      <div class="btn-group btn-group-justified" role="group">
+        <a class="btn btn-default" role="button">重置</a>
+        <a class="btn btn-default" role="button">登录</a>
+      </div>
+    </form>
+    <div class="result">
+      {{username}}: {{password}}
+    </div>
+    <div class="footer">
+      <span>Powered by Rong</span>
+    </div>
+  </body>
+</html>
