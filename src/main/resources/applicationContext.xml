@@ -1,60 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans 
- http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
- http://www.springframework.org/schema/tx 
- http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
- http://www.springframework.org/schema/aop 
- http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+ http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+ http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+ http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+ http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<context:component-scan base-package="fast.dev.platform" />
+
+	<mvc:annotation-driven />
+
+	<mvc:resources mapping="/resources/**" location="/resources/"
+		cache-period="31556926" />
+
+	<tx:annotation-driven />
+
+	<mvc:view-controller path="/" view-name="login" />
+
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="" />
+		<property name="suffix" value=".html" />
+	</bean>
+
+	<context:property-placeholder location="classpath:jdbc.properties" />
 
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
 		init-method="init" destroy-method="close">
 		<property name="url" value="${jdbc_url}" />
-		<property name="username">
-			<value>${jdbc_user}</value>
-		</property>
+		<property name="username" value="${jdbc_user}" />
 		<property name="password" value="${jdbc_password}" />
-		<property name="filters">
-			<value>stat</value>
-		</property>
-		<property name="maxActive">
-			<value>20</value>
-		</property>
-		<property name="initialSize">
-			<value>1</value>
-		</property>
-		<property name="maxWait">
-			<value>60000</value>
-		</property>
-		<property name="minIdle">
-			<value>1</value>
-		</property>
-		<property name="timeBetweenEvictionRunsMillis">
-			<value>60000</value>
-		</property>
-		<property name="minEvictableIdleTimeMillis">
-			<value>300000</value>
-		</property>
-		<property name="validationQuery">
-			<value>SELECT 'x'</value>
-		</property>
-		<property name="testWhileIdle">
-			<value>true</value>
-		</property>
-		<property name="testOnBorrow">
-			<value>false</value>
-		</property>
-		<property name="testOnReturn">
-			<value>false</value>
-		</property>
-		<property name="poolPreparedStatements">
-			<value>true</value>
-		</property>
-		<property name="maxOpenPreparedStatements">
-			<value>20</value>
-		</property>
+		<property name="driverClassName" value="${jdbc_driver_class}" />
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="typeAliasesPackage" value="fast.dev.platform.entity" />
+	</bean>
+
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="fast.dev.platform.mapper" />
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
 	</bean>
 
 </beans>
