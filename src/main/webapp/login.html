@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app>
+<html ng-app="myApp" ng-controller="myCtrl">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,6 +9,7 @@
     <script src="resources/components/jquery-2.1.4/jquery-2.1.4.min.js"></script>
     <script src="resources/components/bootstrap-3.3.5/js/bootstrap.min.js"></script>
     <script src="resources/components/angular-1.4.7/angular.min.js"></script>
+    <script src="resources/js/app.js"></script>
     <style type="text/css">
       body {
         padding-left: 15px;
@@ -50,12 +51,12 @@
         <span class="input-group-addon">
           <span class="glyphicon glyphicon-lock"></span>
         </span>
-        <input type="text" name="password" ng-model="password" class="form-control" id="password" placeholder="请输入密码" />
+        <input type="password" name="password" ng-model="password" class="form-control" id="password" placeholder="请输入密码" />
       </div>
       <br>
       <div class="btn-group btn-group-justified" role="group">
-        <a class="btn btn-default" role="button">重置</a>
-        <a class="btn btn-default" role="button">登录</a>
+        <a class="btn btn-default" role="button" ng-click="reset()">重置</a>
+        <a class="btn btn-default" role="button" ng-click="login()">登录</a>
       </div>
     </form>
     <div class="result">
