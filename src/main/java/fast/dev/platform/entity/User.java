@@ -11,8 +11,8 @@ public class User {
 	private String phone;
 	private int sex;
 	private String address;
-	private Date create_time;
-	private Date update_time;
+	private long create_time;
+	private long update_time;
 
 	public String getId() {
 		return id;
@@ -70,19 +70,19 @@ public class User {
 		this.address = address;
 	}
 
-	public Date getCreate_time() {
+	public long getCreate_time() {
 		return create_time;
 	}
 
-	public void setCreate_time(Date create_time) {
+	public void setCreate_time(long create_time) {
 		this.create_time = create_time;
 	}
 
-	public Date getUpdate_time() {
+	public long getUpdate_time() {
 		return update_time;
 	}
 
-	public void setUpdate_time(Date update_time) {
+	public void setUpdate_time(long update_time) {
 		this.update_time = update_time;
 	}
 

@@ -10,10 +10,10 @@
 	<url>http://dev.rong.lin</url>
 
 	<properties>
+		<slf4j-log4j12.version>1.7.13</slf4j-log4j12.version>
 		<commons-fileupload.version>1.3.1</commons-fileupload.version>
 		<commons-codec.version>1.10</commons-codec.version>
 		<gson.version>2.6.2</gson.version>
-		<log4j.version>2.5</log4j.version>
 		<junit.version>4.12</junit.version>
 		<servlet-api.version>3.1.0</servlet-api.version>
 		<spring.version>4.2.5.RELEASE</spring.version>
@@ -26,6 +26,11 @@
 	</properties>
 
 	<dependencies>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j-log4j12.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -40,16 +45,6 @@
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 			<version>${gson.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>${log4j.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>${log4j.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>

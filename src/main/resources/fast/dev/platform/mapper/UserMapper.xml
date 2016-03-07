@@ -3,9 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="fast.dev.platform.mapper.UserMapper">
-    
-	<select id="findUserByAccount" parameterType="String" resultType="User">
+
+	<select id="findUserByAccount" parameterType="String"
+		resultType="User">
 		select * from t_user where account = #{account}
 	</select>
-	
+
+	<insert id="register" parameterType="User">
+		insert into t_user
+		(id, account, real_name, password, phone, sex, address, create_time, update_time)
+		values
+		(#{id}, #{account}, #{real_name}, #{password}, #{phone}, #{sex}, #{address}, #{create_time}, #{update_time})
+	</insert>
+
+	<update id="updateUser" parameterType="User">
+		update t_user set account = #{account},
+			real_name = #{real_name},
+			password = #{password},
+			phone = #{phone},
+			sex = #{sex},
+			address = #{address},
+			create_time = #{create_time},
+			update_time = #{update_time}
+		where
+			id = #{id}
+	</update>
+
+	<delete id="deleteUser" parameterType="String">
+		delete from t_user where id = #{id}
+	</delete>
+
 </mapper>

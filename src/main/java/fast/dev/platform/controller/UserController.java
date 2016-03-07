@@ -21,11 +21,6 @@ public class UserController extends BaseController {
 	@Resource
 	private UserService userService;
 	
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String toLogin() {
-		return "login";
-	}
-	
 	@ResponseBody
 	@RequestMapping(value = "/login", method=RequestMethod.POST)
 	public String login(@RequestParam(required=true) String account, @RequestParam(required=true) String password) {
@@ -42,6 +37,57 @@ public class UserController extends BaseController {
 		} else {
 			result.addProperty("status", "fail");
 			result.addProperty("msg", "用户不存在");
+		}
+		return result.toString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/register", method=RequestMethod.POST)
+	public String register(User user) {
+		JsonObject result = new JsonObject();
+		try {
+			userService.updateUser(user);
+			result.addProperty("status", "ok");
+			result.addProperty("msg", "注册成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			result.addProperty("status", "fail");
+			result.addProperty("msg", "注册失败");
+		}
+		return result.toString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/updateUser", method=RequestMethod.POST)
+	public String updateUser(User user) {
+		JsonObject result = new JsonObject();
+		try {
+			userService.updateUser(user);
+			result.addProperty("status", "ok");
+			result.addProperty("msg", "更新成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			result.addProperty("status", "fail");
+			result.addProperty("msg", "更新失败");
+		}
+		return result.toString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/deleteUser", method=RequestMethod.POST)
+	public String deleteUser(@RequestParam(required=true) String id) {
+		JsonObject result = new JsonObject();
+		try {
+			userService.deleteUser(id);
+			result.addProperty("status", "ok");
+			result.addProperty("msg", "删除成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+			result.addProperty("status", "fail");
+			result.addProperty("msg", "删除失败");
 		}
 		return result.toString();
 	}
