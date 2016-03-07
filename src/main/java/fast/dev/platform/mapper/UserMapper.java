@@ -4,12 +4,14 @@ import fast.dev.platform.entity.User;
 
 public interface UserMapper {
 
+	public User findUserById(String id);
+	
 	public User findUserByAccount(String account);
 	
-	public void register(User user);
+	public int register(User user);
 	
-	public void updateUser(User user);
+	public int updateUser(User user);
 	
-	public void deleteUser(String id);
+	public int deleteUser(String id);
 	
 }

@@ -14,23 +14,27 @@ public class UserService {
 	@Resource
 	private UserMapper userMapper;
 	
+	public User findUserById(String id) {
+		return userMapper.findUserById(id);
+	}
+	
 	public User findUserByAccount(String account) {
 		return userMapper.findUserByAccount(account);
 	}
 	
 	@Transactional
-	public void register(User user) {
-		userMapper.register(user);
+	public int register(User user) {
+		return userMapper.register(user);
 	}
 	
 	@Transactional
-	public void updateUser(User user) {
-		userMapper.updateUser(user);
+	public int updateUser(User user) {
+		return userMapper.updateUser(user);
 	}
 	
 	@Transactional
-	public void deleteUser(String id) {
-		userMapper.deleteUser(id);
+	public int deleteUser(String id) {
+		return userMapper.deleteUser(id);
 	}
 	
 }

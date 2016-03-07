@@ -15,18 +15,17 @@
 
 	<mvc:annotation-driven />
 
-	<mvc:resources mapping="/resources/**" location="/resources/"
-		cache-period="31556926" />
+	<mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926" />
 
 	<tx:annotation-driven />
 
 	<!-- <mvc:view-controller path="/" view-name="login" /> -->
 
-	<bean id="viewResolver"
+	<!-- <bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="" />
 		<property name="suffix" value=".html" />
-	</bean>
+	</bean> -->
 
 	<context:property-placeholder location="classpath:jdbc.properties" />
 
