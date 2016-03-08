@@ -18,8 +18,8 @@ public class UserService {
 		return userMapper.findUserById(id);
 	}
 	
-	public User findUserByAccount(String account) {
-		return userMapper.findUserByAccount(account);
+	public User findUserByUsername(String username) {
+		return userMapper.findUserByUsername(username);
 	}
 	
 	@Transactional

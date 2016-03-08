@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-controller="myCtrl">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>快速开发平台-Web</title>
+<link rel="stylesheet"
+	href="resources/components/bootstrap-3.3.6/css/bootstrap.min.css">
+<script src="resources/components/jquery-2.2.1/jquery-2.2.1.min.js"></script>
+<script src="resources/components/bootstrap-3.3.6/js/bootstrap.min.js"></script>
+<script src="resources/components/angular-1.4.7/angular.min.js"></script>
+<script src="resources/components/angular-ui/ui-router/angular-ui-router.min.js"></script>
+<script src="resources/js/app.js"></script>
+<style type="text/css">
+body {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.logo {
+	font-size: 19pt;
+	text-align: center;
+}
+
+.footer {
+	font-size: 7pt;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	margin-bottom: 20px;
+	margin-right: 20px;
+	font-style: italic;
+}
+</style>
+</head>
+<body>
+	<div ui-view></div>
+	<div class="footer">
+		<span>Powered by Rong</span>
+	</div>
+</body>
+</html>

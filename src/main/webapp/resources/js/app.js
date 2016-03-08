@@ -1,5 +1,5 @@
 var myApp = angular.module('myApp', ['ui.router']);
-myApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'], function($httpProvider, $stateProvider, $urlRouterProvider) {
+myApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider', function($httpProvider, $stateProvider, $urlRouterProvider) {
 	$httpProvider.defaults.transformRequest = function(data) {
 		if (data === undefined) {
 			return data;
@@ -12,17 +12,49 @@ myApp.config(['$httpProvider', '$stateProvider', '$urlRouterProvider'], function
 
 	$stateProvider.state("home", {
 		url: "/",
-		templateUrl: 'index.html'
+		templateUrl: 'home.html'
+	}).state('login', {
+		url: '/login',
+		templateUrl: 'login.html',
+		controller: ['$scope', '$http', '$state', function($scope, $http, $state) {
+			$scope.username = '';
+			$scope.password = '';
+			
+			$scope.reset = function() {
+				$scope.username = '';
+				$scope.password = '';
+			}
+			
+			$scope.login = function() {
+				$http.post('login.do', {
+					username: $scope.username,
+					password: $scope.password
+				}).success(function(data, status, headers, config) {
+					if (data.status == 'ok') {
+						$state.go('home');
+					}
+					console.log(data);
+					console.log(status);
+					console.log(headers);
+					console.log(config);
+				}).error(function(data, status, headers, config) {
+					console.log(data);
+					console.log(status);
+					console.log(headers);
+					console.log(config);
+				});
+			}
+		}]
 	});
-});
+}]);
 myApp.controller('myCtrl', function($scope, $http, $location, $state) {
 	
-	$scope.username = '哒哒';
-	$scope.password = '123456';
+	$scope.username = '';
+	$scope.password = '';
 	
 	$scope.reset = function() {
-		$scope.username = '哒哒';
-		$scope.password = '123456';
+		$scope.username = '';
+		$scope.password = '';
 	}
 	
 	$scope.login = function() {
@@ -32,7 +64,9 @@ myApp.controller('myCtrl', function($scope, $http, $location, $state) {
 		}).success(function(data, status, headers, config) {
 //			$location.path('index.html');
 //			window.location = 'index.html';
-			$state.go('home');
+			if (data.status == 'ok') {
+				$state.go('home');
+			}
 			console.log(data);
 			console.log(status);
 			console.log(headers);

@@ -28,7 +28,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/login", method=RequestMethod.GET, produces = { "application/json;charset=UTF-8" })
 	public String login() {
 		JSONObject result = new JSONObject();
-		User user = userService.findUserByAccount("test");
+		User user = userService.findUserByUsername("test");
 		if (user != null) {
 			if (Md5Crypt.md5Crypt("123456".getBytes()).equals(user.getPassword())) {
 				result.put("status", "ok");
@@ -48,7 +48,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
 	public String login(@RequestParam(required = true) String username, @RequestParam(required = true) String password) {
 		JSONObject result = new JSONObject();
-		User user = userService.findUserByAccount(username);
+		User user = userService.findUserByUsername(username);
 		if (user != null) {
 			if (MD5Utils.toMD5(password).equals(user.getPassword())) {
 				result.put("status", "ok");

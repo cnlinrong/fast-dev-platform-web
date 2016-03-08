@@ -6,7 +6,7 @@ public interface UserMapper {
 
 	public User findUserById(String id);
 	
-	public User findUserByAccount(String account);
+	public User findUserByUsername(String username);
 	
 	public int register(User user);
 	

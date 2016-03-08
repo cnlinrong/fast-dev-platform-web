@@ -8,7 +8,7 @@
 		select * from t_user where id = #{id}
 	</select>
 	
-	<select id="findUserByAccount" parameterType="String" resultType="User">
+	<select id="findUserByUsername" parameterType="String" resultType="User">
 		select * from t_user where username = #{username}
 	</select>
 
