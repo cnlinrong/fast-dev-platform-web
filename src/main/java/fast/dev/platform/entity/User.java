@@ -1,11 +1,9 @@
 package fast.dev.platform.entity;
 
-import java.util.Date;
-
 public class User {
 
 	private String id;
-	private String account;
+	private String username;
 	private String real_name;
 	private String password;
 	private String phone;
@@ -22,12 +20,12 @@ public class User {
 		this.id = id;
 	}
 
-	public String getAccount() {
-		return account;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setAccount(String account) {
-		this.account = account;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getReal_name() {

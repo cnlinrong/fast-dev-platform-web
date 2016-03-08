@@ -45,10 +45,10 @@ public class UserController extends BaseController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/login", method=RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
-	public String login(@RequestParam(required=true) String account, @RequestParam(required=true) String password) {
+	@RequestMapping(value = "/login", method = RequestMethod.POST, produces = { "application/json;charset=UTF-8" })
+	public String login(@RequestParam(required = true) String username, @RequestParam(required = true) String password) {
 		JSONObject result = new JSONObject();
-		User user = userService.findUserByAccount(account);
+		User user = userService.findUserByAccount(username);
 		if (user != null) {
 			if (MD5Utils.toMD5(password).equals(user.getPassword())) {
 				result.put("status", "ok");
@@ -112,7 +112,7 @@ public class UserController extends BaseController {
 	public String register() {
 		User user = new User();
 		user.setId(CommonUtils.generateUUID());
-		user.setAccount("test");
+		user.setUsername("test");
 		user.setPassword(MD5Utils.toMD5("123456"));
 		user.setReal_name("测试");
 		user.setPhone("13600000000");
@@ -166,7 +166,7 @@ public class UserController extends BaseController {
 	public String updateUser() {
 		User user = new User();
 		user.setId("B80AB5AFAFC94CDB8C8EFEFD0A92BB62");
-		user.setAccount("test");
+		user.setUsername("test");
 		user.setPassword(MD5Utils.toMD5("111111"));
 		user.setReal_name("测试123");
 		user.setPhone("13600000000");
