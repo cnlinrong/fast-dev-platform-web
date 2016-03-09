@@ -1,0 +1,51 @@
+<form class="form">
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">用户名</span> 
+		<input type="text" ng-model="user.username" class="form-control" placeholder="请输入用户名" />
+	</div>
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">密码</span> 
+		<input type="password" ng-model="user.password" class="form-control" placeholder="请输入密码" />
+	</div>
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">确认密码</span> 
+		<input type="password" ng-model="user.password1" class="form-control" placeholder="请再次输入密码" />
+	</div>
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">真实姓名</span> 
+		<input type="text" ng-model="user.real_name" class="form-control" placeholder="请输入真实姓名" />
+	</div>
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">手机号码</span> 
+		<input type="text" ng-model="user.phone" class="form-control" placeholder="请输入真实姓名" />
+	</div>
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">性别</span>
+		<div class="form-control">
+			<span>&nbsp;&nbsp;&nbsp;</span>
+			<label> 
+				<input type="radio" ng-model="user.sex" value="1" checked>&nbsp;男
+			</label>
+			<span>&nbsp;&nbsp;&nbsp;</span>
+			<label> 
+				<input type="radio" ng-model="user.sex" value="0">&nbsp;女
+			</label>
+		</div>
+	</div>
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">住址</span> 
+		<input type="text" ng-model="user.address" class="form-control" placeholder="请输入住址" />
+	</div>
+	<br>
+	<div class="btn-group btn-group-justified" role="group">
+		<a class="btn btn-default" role="button" ng-click="reset()">重置</a> 
+		<a class="btn btn-default" role="button" ng-click="register()">注册</a>
+	</div>
+</form>
