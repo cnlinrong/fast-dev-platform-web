@@ -7,7 +7,8 @@ public class User {
 	private String real_name;
 	private String password;
 	private String phone;
-	private String sex;
+	private String email;
+	private int sex;
 	private String address;
 	private long create_time;
 	private long update_time;
@@ -52,11 +53,19 @@ public class User {
 		this.phone = phone;
 	}
 
-	public String getSex() {
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public int getSex() {
 		return sex;
 	}
 
-	public void setSex(String sex) {
+	public void setSex(int sex) {
 		this.sex = sex;
 	}
 

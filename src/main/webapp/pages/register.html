@@ -1,3 +1,8 @@
+<br>
+<div class="logo">
+	<span>注册新用户</span>
+</div>
+<div class="alert alert-danger" role="alert" ng-show="!success">{{errorMsg}}</div>
 <form class="form">
 	<br>
 	<div class="input-group">
@@ -22,7 +27,12 @@
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">手机号码</span> 
-		<input type="text" ng-model="user.phone" class="form-control" placeholder="请输入真实姓名" />
+		<input type="text" ng-model="user.phone" class="form-control" placeholder="请输入手机号码" />
+	</div>
+	<br>
+	<div class="input-group">
+		<span class="input-group-addon">邮箱</span> 
+		<input type="email" ng-model="user.email" class="form-control" placeholder="请输入邮箱" />
 	</div>
 	<br>
 	<div class="input-group">
@@ -49,3 +59,7 @@
 		<a class="btn btn-default" role="button" ng-click="register()">注册</a>
 	</div>
 </form>
+<br>
+<div style="text-align: center;">
+	<a ui-sref="login">已有账号，返回登录</a>
+</div>

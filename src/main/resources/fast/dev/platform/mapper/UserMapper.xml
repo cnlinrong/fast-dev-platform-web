@@ -14,9 +14,9 @@
 
 	<insert id="register" parameterType="User">
 		insert into t_user
-		(id, username, real_name, password, phone, sex, address, create_time, update_time)
+		(id, username, real_name, password, phone, email, sex, address, create_time, update_time)
 		values
-		(#{id}, #{username}, #{real_name}, #{password}, #{phone}, #{sex}, #{address}, #{create_time}, #{update_time})
+		(#{id}, #{username}, #{real_name}, #{password}, #{phone}, #{email}, #{sex}, #{address}, #{create_time}, #{update_time})
 	</insert>
 
 	<update id="updateUser" parameterType="User">
@@ -24,6 +24,7 @@
 			real_name = #{real_name},
 			password = #{password},
 			phone = #{phone},
+			email = #{email},
 			sex = #{sex},
 			address = #{address},
 			create_time = #{create_time},
