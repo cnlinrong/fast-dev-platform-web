@@ -4,6 +4,7 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,21 +27,27 @@ public class UserController extends BaseController {
 
 	@ResponseBody
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
-	public String login(@RequestParam(required = true) String username,
-			@RequestParam(required = true) String password) {
+	public String login(@RequestParam(required = true) String username, @RequestParam(required = true) String password) {
 		JSONObject result = new JSONObject();
-		User user = userService.findUserByUsername(username);
-		if (user != null) {
-			if (MD5Utils.toMD5(password).equals(user.getPassword())) {
-				result.put("status", "ok");
-				result.put("msg", "登录成功");
+		try {
+			User user = userService.findUserByUsername(username);
+			if (user != null) {
+				if (MD5Utils.toMD5(password).equals(user.getPassword())) {
+					result.put("status", "ok");
+					result.put("msg", "登录成功");
+				} else {
+					result.put("status", "fail");
+					result.put("msg", "密码错误");
+				}
 			} else {
 				result.put("status", "fail");
-				result.put("msg", "密码错误");
+				result.put("msg", "用户不存在");
 			}
-		} else {
+		} catch (JSONException e) {
+			e.printStackTrace();
+			
 			result.put("status", "fail");
-			result.put("msg", "用户不存在");
+			result.put("msg", "登录失败");
 		}
 		return result.toString();
 	}
@@ -49,19 +56,26 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/findUser", method = RequestMethod.GET)
 	public String findUser() {
 		JSONObject result = new JSONObject();
-		User user = userService.findUserById("B80AB5AFAFC94CDB8C8EFEFD0A92BB62");
-		if (user != null) {
-			if (MD5Utils.toMD5("123456").equals(user.getPassword())) {
-				result.put("status", "ok");
-				result.put("msg", "登录成功");
-				result.put("data", new JSONObject(user));
+		try {
+			User user = userService.findUserById("B80AB5AFAFC94CDB8C8EFEFD0A92BB62");
+			if (user != null) {
+				if (MD5Utils.toMD5("123456").equals(user.getPassword())) {
+					result.put("status", "ok");
+					result.put("msg", "登录成功");
+					result.put("data", new JSONObject(user));
+				} else {
+					result.put("status", "fail");
+					result.put("msg", "密码错误");
+				}
 			} else {
 				result.put("status", "fail");
-				result.put("msg", "密码错误");
+				result.put("msg", "用户不存在");
 			}
-		} else {
+		} catch (JSONException e) {
+			e.printStackTrace();
+			
 			result.put("status", "fail");
-			result.put("msg", "用户不存在");
+			result.put("msg", "查询失败");
 		}
 		return result.toString();
 	}
@@ -142,4 +156,34 @@ public class UserController extends BaseController {
 		return result.toString();
 	}
 
+	@ResponseBody
+	@RequestMapping(value = "/modifyPassword", method = RequestMethod.POST)
+	public String modifyPassword(@RequestParam(required = true) String username, @RequestParam(required = true) String password) {
+		JSONObject result = new JSONObject();
+		try {
+			User user = userService.findUserByUsername(username);
+			if (user != null) {
+				user.setPassword(MD5Utils.toMD5(password));
+				user.setUpdate_time(new Date().getTime());
+				int num = userService.updateUser(user);
+				if (num > 0) {
+					result.put("status", "ok");
+					result.put("msg", "修改成功");
+				} else {
+					result.put("status", "fail");
+					result.put("msg", "修改失败");
+				}
+			} else {
+				result.put("status", "fail");
+				result.put("msg", "用户不存在");
+			}
+		} catch (JSONException e) {
+			e.printStackTrace();
+			
+			result.put("status", "fail");
+			result.put("msg", "修改失败");
+		}
+		return result.toString();
+	}
+	
 }

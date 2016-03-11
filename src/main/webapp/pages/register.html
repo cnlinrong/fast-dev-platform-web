@@ -1,38 +1,38 @@
+<div class="alert alert-danger" role="alert" ng-show="!success && errorMsg !== ''">{{errorMsg}}</div>
 <br>
 <div class="logo">
 	<span>注册新用户</span>
 </div>
-<div class="alert alert-danger" role="alert" ng-show="!success">{{errorMsg}}</div>
-<form class="form">
+<form class="form" name="myForm" novalidate>
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">用户名</span> 
-		<input type="text" ng-model="user.username" class="form-control" placeholder="请输入用户名" />
+		<input type="text" name="username" ng-model="user.username" class="form-control" placeholder="请输入用户名" required />
 	</div>
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">密码</span> 
-		<input type="password" ng-model="user.password" class="form-control" placeholder="请输入密码" />
+		<input type="password" name="password" ng-model="user.password" class="form-control" placeholder="请输入密码" required />
 	</div>
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">确认密码</span> 
-		<input type="password" ng-model="user.password1" class="form-control" placeholder="请再次输入密码" />
+		<input type="password" name="password1" ng-model="user.password1" class="form-control" placeholder="请再次输入密码" required />
 	</div>
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">真实姓名</span> 
-		<input type="text" ng-model="user.real_name" class="form-control" placeholder="请输入真实姓名" />
+		<input type="text" name="real_name" ng-model="user.real_name" class="form-control" placeholder="请输入真实姓名" />
 	</div>
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">手机号码</span> 
-		<input type="text" ng-model="user.phone" class="form-control" placeholder="请输入手机号码" />
+		<input type="text" name="phone" ng-model="user.phone" class="form-control" placeholder="请输入手机号码" />
 	</div>
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">邮箱</span> 
-		<input type="email" ng-model="user.email" class="form-control" placeholder="请输入邮箱" />
+		<input type="email" name="email" ng-model="user.email" class="form-control" placeholder="请输入邮箱" />
 	</div>
 	<br>
 	<div class="input-group">
@@ -51,7 +51,7 @@
 	<br>
 	<div class="input-group">
 		<span class="input-group-addon">住址</span> 
-		<input type="text" ng-model="user.address" class="form-control" placeholder="请输入住址" />
+		<input type="text" name="address" ng-model="user.address" class="form-control" placeholder="请输入住址" />
 	</div>
 	<br>
 	<div class="btn-group btn-group-justified" role="group">
